@@ -1,0 +1,30 @@
+.container {
+  height: calc(100lvh - 50px);
+  position: relative;
+
+  .card {
+    height: min-content;
+    border: 3px solid var(--color-gray-900);
+    border-radius: 14px;
+    padding: 1rem;
+    background-color: var(--color-gray-50);
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(100%, 500px);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    h1 {
+      font-size: 1.6rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+}
