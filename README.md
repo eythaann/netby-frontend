@@ -2,7 +2,13 @@
 
 ## Available Scripts
 
-In the project directory, you can run:
+Before you can run the app, you need to install the dependencies.
+
+```bash
+npm install
+```
+
+After that, in the project directory, you can run:
 
 ### `npm start`
 

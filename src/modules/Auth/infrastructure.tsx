@@ -22,7 +22,7 @@ export function Login() {
       path: "/login",
       method: "POST",
       body: form,
-      from: "text"
+      responseType: "text"
     });
 
     if (result.isOk()) {
@@ -97,6 +97,7 @@ export function Register() {
       path: "/register",
       method: "POST",
       body: form,
+      responseType: "void"
     });
 
     if (result.isOk()) {

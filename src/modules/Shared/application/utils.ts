@@ -33,6 +33,7 @@ export function Err<T, E>(err: E) {
 export enum AppFetchFrom {
   Json = "json",
   Text = "text",
+  Void = "void",
 }
 
 
@@ -44,7 +45,7 @@ export interface AppFetchOptions<T = any> {
   body?: any;
   headers?: Record<string, string>;
   schema?: z.Schema<T>;
-  from?: `${AppFetchFrom}`;
+  responseType?: `${AppFetchFrom}`;
 }
 
 export async function appFetch<T>(opt: AppFetchOptions<T>): Promise<Result<T, any>> {
@@ -55,7 +56,7 @@ export async function appFetch<T>(opt: AppFetchOptions<T>): Promise<Result<T, an
     body,
     headers = {},
     schema,
-    from = AppFetchFrom.Json,
+    responseType: from = AppFetchFrom.Json,
   } = opt;
 
   let cleanPath = path.startsWith("/") ? path : `/${path}`;
@@ -73,6 +74,10 @@ export async function appFetch<T>(opt: AppFetchOptions<T>): Promise<Result<T, an
     });
 
     if (response.ok) {
+      if (from === AppFetchFrom.Void) {
+        return Ok(undefined as T);
+      }
+
       if (from === AppFetchFrom.Text) {
         return Ok(schema ? schema.parse(await response.text() as T) : await response.text() as T);
       }
